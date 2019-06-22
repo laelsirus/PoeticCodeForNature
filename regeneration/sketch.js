@@ -116,13 +116,13 @@ class CellMovementTop {
     else if (choice > 10) {
       this.y = this.y + speedABS;
     }
-    this.x = constrain(this.x,1,width);
+    this.x = constrain(this.x,0,width);
 
     if (infect == 1) {
-      this.y = constrain(this.y,-10,height/2); 
+      this.y = constrain(this.y,-30,height/2); 
     }
     else {
-      this.y = constrain(this.y,-10,height+10);
+      this.y = constrain(this.y,-30,height+30);
     }
 
     if (infect == 1) {
@@ -170,13 +170,13 @@ class CellMovementBottom {
     else if (choice > 10) {
       this.y = this.y - speedABS;
     }
-    this.x = constrain(this.x,1,width);
+    this.x = constrain(this.x,0,width);
     
     if (infect == 1) {
-      this.y = constrain(this.y,height/2, height + 10); 
+      this.y = constrain(this.y,height/2, height + 30); 
     }
     else {
-      this.y = constrain(this.y,-10,height + 10);
+      this.y = constrain(this.y,-30,height + 30);
     }
     
     if (infect == 1) {

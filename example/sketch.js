@@ -22,18 +22,18 @@ let stepProb;
 let randomColor;
 let randomStroke;
 let choice
+let upDown
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목12");
   title.position(20, 0);
 
-  for (var i = 0; i < 20; i++) {
+  createCanvas(640,360);
+  background(0);
+  
+  for (var i = 0; i < 1000; i++) {
      walker[i] = new Walker(random(width), random(height));
    }
-  createCanvas(640,360);
-  // walker = new Walker();
-  // walker2 = new Walker();
-  background(0);
 
   description = "\
   작품에 대한 설명이 들어갑니다. <br/> \
@@ -47,7 +47,7 @@ function setup() {
 
 
 function draw() {
-  background(0, 50);
+  background(0, 30);
   
   if (mouseIsPressed){
     randomColor = random (0, 170);
@@ -57,23 +57,31 @@ function draw() {
     for (var i = 0; i < walker.length; i++) {
      walker[i].step();
      walker[i].render();
-   }
-//     walker.step(6);
-//     walker.render(randomColor);
-    
-//     walker2.step(6);
-//     walker2.render(randomColor);
-    
-    
+   }    
   }
+  
+//   else {
+//     upDown = -5;
+//     randomColor = random (0, 170);
+//     randomStroke = random (0, 20);
+//     stepProb = 7;
+    
+//     for (var i = 0; i < walker.length; i++) {
+//      walker[i].step();
+//      walker[i].render();
+//    }  
+//   }
+  
+  
+  
 }
 
 
 
 class Walker {
   constructor(){
-    this.x = random (0, 640);
-    this.y = random (0, 10);
+    this.x = random (0, width);
+    this.y = height/2;
   }
 
   render() {
@@ -83,6 +91,8 @@ class Walker {
   }
 
   step() { 
+      random (2);
+    
       choice = floor(random(0, stepProb));
       if (choice == 0 && 1) {
         this.x++;
@@ -94,7 +104,7 @@ class Walker {
         this.y--;
       }
       else if (choice > 4) {
-        this.y = this.y + 10;
+        this.y++;
       }
     this.x = constrain(this.x,0,width-1);
     this.y = constrain(this.y,0,height-1);

@@ -1,5 +1,5 @@
-var walkerTop = [];
-var walkerBottom = [];
+var cellMovementTop = [];
+var cellMovementBottom = [];
 let stepProb;
 let randomColor;
 let randomStroke;
@@ -15,8 +15,17 @@ function setup() {
   title.position(20, 0);
 
   canvas = createCanvas(1440, 540);
-  canvas.position(20, 60);
+  canvas.position(20, 120);
   canvas.class("artwork");
+
+  description = "\
+  떨어진 신경 세포의 재생, 결합을 시각화 <br/> \
+  클릭하면 세포의 감염 발생 \
+  ";
+  text = createDiv(description);
+  text.position(20, 60);
+  text.style("font-family", "monospace");
+  text.style("font-size", "12pt");
 
   background(0);
   speed = 3;
@@ -25,20 +34,11 @@ function setup() {
   stepProb = 13;
   
   for (var i = 0; i < 150; i++) {
-     walkerTop[i] = new WalkerTop();
+     cellMovementTop[i] = new CellMovementTop();
   }
   for (var j = 0; j < 150; j++) {
-     walkerBottom[j] = new WalkerBottom(); 
+     cellMovementBottom[j] = new CellMovementBottom(); 
   } 
-
-  description = "\
-  떨어진 신경 세포의 재생, 결합을 시각화 <br/> \
-  클릭하면 세포의 감염 발생 \
-  ";
-  text = createDiv(description);
-  text.position(20, 640);
-  text.style("font-family", "monospace");
-  text.style("font-size", "12pt");
 }
 
 function draw() {
@@ -48,37 +48,40 @@ function draw() {
   if (healthy == 1) {
     speed = speed + 0.03;
   }
+  else if (infect ==1){
+    speed = 2;
+  }
   else {
-    speed = 3;
+    speed= 3;
   }
   
   if (mouseIsPressed) {
     upDown = -abs(speed);   
     infect = 1;
-    for (var i = 0; i < walkerTop.length; i++) {
-      walkerTop[i].step();
-      walkerTop[i].render();
+    for (var i = 0; i < cellMovementTop.length; i++) {
+      cellMovementTop[i].step();
+      cellMovementTop[i].render();
    }
-    for (var j = 0; j < walkerBottom.length; j++) {
-      walkerBottom[j].step();
-      walkerBottom[j].render();
+    for (var j = 0; j < cellMovementBottom.length; j++) {
+      cellMovementBottom[j].step();
+      cellMovementBottom[j].render();
    }
   }
   else {
     upDown = +abs(speed); 
     infect = 0;
-    for (var i2= 0; i2 < walkerTop.length; i2++) {
-     walkerTop[i2].step();
-     walkerTop[i2].render();
+    for (var i= 0; i < cellMovementTop.length; i++) {
+     cellMovementTop[i].step();
+     cellMovementTop[i].render();
    }  
-    for (var j2 = 0; j2 < walkerBottom.length; j2++) {
-     walkerBottom[j2].step();
-     walkerBottom[j2].render();
+    for (var j = 0; j < cellMovementBottom.length; j++) {
+     cellMovementBottom[j].step();
+     cellMovementBottom[j].render();
    }  
   }
 }
 
-class WalkerTop {
+class CellMovementTop {
   constructor(){
     this.x = random(width);//(width/2-50, width/2+50)
     this.y = 0;
@@ -93,16 +96,16 @@ class WalkerTop {
   }
 
   step() {     
-      choice = floor(random(0, stepProb));
-      if (choice < 5) {
-        this.x++;
-      }
-      else if (choice > 5 && choice <= 10) {
-        this.x--;
-      }
-      else if (choice > 10) {
-        this.y = this.y + upDown;
-      }
+    choice = floor(random(0, stepProb));
+    if (choice < 5) {
+      this.x++;
+    }
+    else if (choice > 5 && choice <= 10) {
+      this.x--;
+    }
+    else if (choice > 10) {
+      this.y = this.y + upDown;
+    }
     this.x = constrain(this.x,1,width);
 
     if (infect == 1) {
@@ -113,23 +116,26 @@ class WalkerTop {
     }
 
     if (infect == 1) {
-      recover = 20;
-      cellSize = 30;
+      recover = 15;
+      cellSize = 20;
       healthy = 0;
+      stepProb = 12;
     }    
-    else if (this.y > height/2-30) {
+    else if (this.y > height/2+30) {
       recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
+      stepProb = 13;
     }
     else {
       cellSize = 7;
       healthy = 0;
+      stepProb = 13;
     }
   }
 }
 
-class WalkerBottom {
+class CellMovementBottom {
   constructor(){
     this.x = random(width); //(width/2-50, width/2+50)
     this.y = height;
@@ -144,16 +150,16 @@ class WalkerBottom {
   }
 
   step() {     
-      choice = floor(random(0, stepProb));
-      if (choice < 5) {
-        this.x++;
-      }
-      else if (choice > 5 && choice <= 10) {
-        this.x--;
-      }
-      else if (choice > 10) {
-        this.y = this.y - upDown;
-      }
+    choice = floor(random(0, stepProb));
+    if (choice < 5) {
+      this.x++;
+    }
+    else if (choice > 5 && choice <= 10) {
+      this.x--;
+    }
+    else if (choice > 10) {
+      this.y = this.y - upDown;
+    }
     this.x = constrain(this.x,1,width);
     
     if (infect == 1) {
@@ -164,18 +170,21 @@ class WalkerBottom {
     }
     
     if (infect == 1) {
-      recover = 20;
-      cellSize = 30;
+      recover = 15;
+      cellSize = 20;
       healthy = 0;
+      stepProb = 12;
     }    
     else if (this.y < height/2+30) {
       recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
+      stepProb = 13;
     }
     else {
       cellSize = 7;
       healthy = 0;
+      stepProb = 13;
     }
   }
 }

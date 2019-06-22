@@ -18,14 +18,24 @@ function setup() {
   canvas.position(20, 120);
   canvas.class("artwork");
 
-  description = "\
+  description1 = "\
   떨어진 신경 세포의 재생, 결합을 시각화 <br/> \
-  클릭하면 세포의 감염 발생 \
+  세포 외적인 영향으로 손상이 발생하고 또다시 재생을 거듭하며 결국엔 성장하게 된다 \
   ";
-  text = createDiv(description);
+
+  description2 = "\
+  클릭하면 세포의 손상이 발생합니다 \
+  ";
+
+  text = createDiv(description1);
   text.position(20, 60);
   text.style("font-family", "monospace");
   text.style("font-size", "12pt");
+
+  text = createDiv(description2);
+  text.position(20, 680);
+  text.style("font-family", "monospace");
+  text.style("font-size", "10pt");
 
   background(0);
   speed = 3;

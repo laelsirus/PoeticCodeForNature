@@ -24,7 +24,7 @@ function setup() {
   ";
 
   description2 = "\
-  클릭하면 세포의 손상이 발생합니다 \
+  클릭을 유지하면 세포의 손상이 발생합니다 \
   ";
 
   text = createDiv(description1);

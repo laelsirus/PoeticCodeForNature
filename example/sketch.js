@@ -11,10 +11,10 @@ let cellSize;
 let healthy;
 
 function setup() {
-  title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> Recover");
+  title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME</a> regeneration");
   title.position(20, 0);
 
-  canvas = createCanvas(960, 540);
+  canvas = createCanvas(1440, 540);
   canvas.position(20, 60);
   canvas.class("artwork");
 
@@ -23,19 +23,19 @@ function setup() {
   recover = 13;
   infect = 0;
   
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 150; i++) {
      walkerTop[i] = new WalkerTop();
   }
-  for (var j = 0; j < 100; j++) {
+  for (var j = 0; j < 150; j++) {
      walkerBottom[j] = new WalkerBottom(); 
   } 
 
   description = "\
-  작품에 대한 설명이 들어갑니다. <br/> \
-  HTML이 직접 들어가서 줄넘김을 할 수 있습니다. \
+  두 신경 세포의 재생, 결합을 시각화 <br/> \
+  클릭하면 세포의 감염 발생 \
   ";
   text = createDiv(description);
-  text.position(20, 400);
+  text.position(20, 640);
   text.style("font-family", "monospace");
   text.style("font-size", "12pt");
 }

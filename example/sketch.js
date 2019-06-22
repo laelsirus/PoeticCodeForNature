@@ -23,18 +23,11 @@ let randomColor;
 let randomStroke;
 let choice
 let upDown
+//let wall;
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목12");
   title.position(20, 0);
-
-  createCanvas(640,360);
-  background(0);
-  
-  for (var i = 0; i < 1000; i++) {
-     walker[i] = new Walker(random(width), random(height));
-   }
-
   description = "\
   작품에 대한 설명이 들어갑니다. <br/> \
   HTML이 직접 들어가서 줄넘김을 할 수 있습니다. \
@@ -43,6 +36,13 @@ function setup() {
   text.position(20, 400);
   text.style("font-family", "monospace");
   text.style("font-size", "12pt");
+
+  createCanvas(640,360);
+  background(0);
+  upDown = 10
+  
+  for (var i = 0; i < 1000; i++) {
+    walker[i] = new Walker();
 }
 
 
@@ -50,6 +50,7 @@ function draw() {
   background(0, 30);
   
   if (mouseIsPressed){
+    upDown = abs(upDown);
     randomColor = random (0, 170);
     randomStroke = random (0, 20);
     stepProb = 7;
@@ -57,20 +58,20 @@ function draw() {
     for (var i = 0; i < walker.length; i++) {
      walker[i].step();
      walker[i].render();
-   }    
+   }
   }
   
-//   else {
-//     upDown = -5;
-//     randomColor = random (0, 170);
-//     randomStroke = random (0, 20);
-//     stepProb = 7;
+  else {
+    upDown = -abs(upDown);
+    randomColor = random (0, 170);
+    randomStroke = random (0, 20);
+    stepProb = 7;
     
-//     for (var i = 0; i < walker.length; i++) {
-//      walker[i].step();
-//      walker[i].render();
-//    }  
-//   }
+    for (var i = 0; i < walker.length; i++) {
+     walker[i].step();
+     walker[i].render();
+   }  
+  }
   
   
   
@@ -90,9 +91,7 @@ class Walker {
     point(this.x,this.y);
   }
 
-  step() { 
-      random (2);
-    
+  step() {     
       choice = floor(random(0, stepProb));
       if (choice == 0 && 1) {
         this.x++;
@@ -104,9 +103,9 @@ class Walker {
         this.y--;
       }
       else if (choice > 4) {
-        this.y++;
+        this.y = this.y + upDown;
       }
-    this.x = constrain(this.x,0,width-1);
-    this.y = constrain(this.y,0,height-1);
+    this.x = constrain(this.x,1,width-1);
+    this.y = constrain(this.y,1,height-1);
   }
 }

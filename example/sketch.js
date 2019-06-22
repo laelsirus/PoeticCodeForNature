@@ -17,13 +17,14 @@
 
 // }
 
-var walker = [];
+var walkerTop = [];
+var walkerBottom = [];
 let stepProb;
 let randomColor;
 let randomStroke;
-let choice
-let upDown
-//let wall;
+let choice;
+let speed;
+let infect;
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 반디");
@@ -37,75 +38,106 @@ function setup() {
   text.style("font-family", "monospace");
   text.style("font-size", "12pt");
 
-  createCanvas(640,360);
+  createCanvas(1920,1080);
   background(0);
-  upDown = 10
+  speed = 1;
   
-  for (var i = 0; i < 1000; i++) {
-    walker[i] = new Walker();
+  for (var i = 0; i < 100; i++) {
+     walkerTop[i] = new WalkerTop();
+   }
+    for (var j = 0; j < 100; j++) {
+     walkerBottom[j] = new WalkerBottom();
 }
 
 
 function draw() {
-  background(0, 30);
+  background(0, 1);
+  stepProb = 13;
   
-  if (mouseIsPressed){
-    upDown = abs(upDown);
-    randomColor = random (0, 170);
-    randomStroke = random (0, 20);
-    stepProb = 7;
-    
-    for (var i = 0; i < walker.length; i++) {
-     walker[i].step();
-     walker[i].render();
+  if (mouseIsPressed) {
+    upDown = -abs(speed);   
+    infect = 0;
+    for (var i = 0; i < walkerTop.length; i++) {
+      walkerTop[i].step();
+      walkerTop[i].render();
+   }
+    for (var j = 0; j < walkerBottom.length; j++) {
+      walkerBottom[j].step();
+      walkerBottom[j].render();
    }
   }
-  
   else {
-    upDown = -abs(upDown);
-    randomColor = random (0, 170);
-    randomStroke = random (0, 20);
-    stepProb = 7;
-    
-    for (var i = 0; i < walker.length; i++) {
-     walker[i].step();
-     walker[i].render();
+    upDown = +abs(speed); 
+    infect = 1;
+    for (var i2= 0; i2 < walkerTop.length; i2++) {
+     walkerTop[i2].step();
+     walkerTop[i2].render();
+   }  
+    for (var j2 = 0; j2 < walkerBottom.length; j2++) {
+     walkerBottom[j2].step();
+     walkerBottom[j2].render();
    }  
   }
-  
-  
-  
 }
 
 
 
-class Walker {
+class WalkerTop {
   constructor(){
-    this.x = random (0, width);
-    this.y = height/2;
+    this.x = random (width/2-50, width/2+50)
+    this.y = 0;
   }
 
   render() {
+    randomStroke = random (0, 7);
+    
     strokeWeight(randomStroke);
-    stroke(255, randomColor, randomColor, 10);
+    stroke(random(200) * infect, random(100) * infect, 255 * infect, 13);
     point(this.x,this.y);
   }
 
   step() {     
       choice = floor(random(0, stepProb));
-      if (choice == 0 && 1) {
+      if (choice < 5) {
         this.x++;
       }
-      else if (choice == 2 && 3) {
+      else if (choice > 5 && choice <= 10) {
         this.x--;
       }
-      else if (choice == 4) {
-        this.y--;
-      }
-      else if (choice > 4) {
+      else if (choice > 10) {
         this.y = this.y + upDown;
       }
-    this.x = constrain(this.x,1,width-1);
-    this.y = constrain(this.y,1,height-1);
+    this.x = constrain(this.x,1,width);
+    this.y = constrain(this.y,-10,height+10);
+  }
+}
+
+class WalkerBottom {
+  constructor(){
+    this.x = random (width/2-50, width/2+50)
+    this.y = height;
+  }
+
+  render() {
+    randomStroke = random (0, 7);
+    
+    strokeWeight(randomStroke);
+    stroke(random(200) * infect, random(100) * infect, 255 * infect, 13);
+    point(this.x,this.y);
+  }
+
+  step() {     
+      choice = floor(random(0, stepProb));
+      if (choice < 5) {
+        this.x++;
+      }
+      else if (choice > 5 && choice <= 10) {
+        this.x--;
+      }
+      else if (choice > 10) {
+        this.y = this.y - upDown;
+      }
+    this.x = constrain(this.x,1,width);
+    this.y = constrain(this.y,-10,height+10);
   }
 }

@@ -19,8 +19,8 @@ function setup() {
   canvas.class("artwork");
 
   description1 = "\
-  떨어진 신경 세포의 재생, 결합을 시각화 <br/> \
-  세포 외적인 영향으로 손상이 발생하고 또다시 재생을 거듭하며 성장한다 \
+  떨어진 신경 세포의 재생, 결합, 손상을 시각화 <br/> \
+  상처받고 아물고 흉터가 생기고 성장한다 \
   ";
 
   description2 = "\

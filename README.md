@@ -5,5 +5,5 @@ body {
 </style>
 
 ## 	Yuhwa Final Work  
- * [regeneration](./example/)  
+ * [regeneration](./regeneration/)  
  ![예시 이미지](./regeneration.png)

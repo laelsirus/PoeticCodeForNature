@@ -22,6 +22,7 @@ function setup() {
   speed = 3;
   recover = 13;
   infect = 0;
+  stepProb = 13;
   
   for (var i = 0; i < 150; i++) {
      walkerTop[i] = new WalkerTop();
@@ -32,7 +33,7 @@ function setup() {
 
   description = "\
   떨어진 신경 세포의 재생, 결합을 시각화 <br/> \
-  Canvas 클릭하면 세포의 감염 발생 \
+  클릭하면 세포의 감염 발생 \
   ";
   text = createDiv(description);
   text.position(20, 640);
@@ -42,10 +43,10 @@ function setup() {
 
 function draw() {
   background(0, 1);
-  stepProb = 13;
+  recover = 13;
 
   if (healthy == 1) {
-    speed = 5;
+    speed = speed + 0.03;
   }
   else {
     speed = 3;
@@ -77,8 +78,6 @@ function draw() {
   }
 }
 
-
-
 class WalkerTop {
   constructor(){
     this.x = random(width);//(width/2-50, width/2+50)
@@ -105,19 +104,25 @@ class WalkerTop {
         this.y = this.y + upDown;
       }
     this.x = constrain(this.x,1,width);
-    this.y = constrain(this.y,-10,height+10);
+
+    if (infect == 1) {
+      this.y = constrain(this.y,-10,height/2); 
+    }
+    else {
+      this.y = constrain(this.y,-10,height+10);
+    }
 
     if (infect == 1) {
       recover = 20;
       cellSize = 30;
+      healthy = 0;
     }    
-    else if (this.y> height/2-30) {
-      recover = 50;
+    else if (this.y > height/2-30) {
+      recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
     }
     else {
-      recover = 13;
       cellSize = 7;
       healthy = 0;
     }
@@ -150,19 +155,25 @@ class WalkerBottom {
         this.y = this.y - upDown;
       }
     this.x = constrain(this.x,1,width);
-    this.y = constrain(this.y,-10,height+10);
+    
+    if (infect == 1) {
+      this.y = constrain(this.y,height/2, height); 
+    }
+    else {
+      this.y = constrain(this.y,-10,height+10);
+    }
     
     if (infect == 1) {
       recover = 20;
       cellSize = 30;
+      healthy = 0;
     }    
     else if (this.y < height/2+30) {
-      recover = 50;
+      recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
     }
     else {
-      recover = 13;
       cellSize = 7;
       healthy = 0;
     }

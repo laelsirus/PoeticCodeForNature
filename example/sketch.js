@@ -6,6 +6,7 @@ let randomStroke;
 let choice;
 let speed;
 let infect;
+let recover;
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> Recover");
@@ -17,6 +18,8 @@ function setup() {
 
   background(0);
   speed = 1;
+  recover = 13;
+  infect = 0;
   
   for (var i = 0; i < 100; i++) {
      walkerTop[i] = new WalkerTop();
@@ -41,7 +44,7 @@ function draw() {
   
   if (mouseIsPressed) {
     upDown = -abs(speed);   
-    infect = 0;
+    infect = 1;
     for (var i = 0; i < walkerTop.length; i++) {
       walkerTop[i].step();
       walkerTop[i].render();
@@ -53,7 +56,7 @@ function draw() {
   }
   else {
     upDown = +abs(speed); 
-    infect = 1;
+    infect = 0;
     for (var i2= 0; i2 < walkerTop.length; i2++) {
      walkerTop[i2].step();
      walkerTop[i2].render();
@@ -77,7 +80,7 @@ class WalkerTop {
     randomStroke = random (0, 7);
     
     strokeWeight(randomStroke);
-    stroke(random(200) * infect, random(100) * infect, 255 * infect, 13);
+    stroke(random(200) * (infect*-1+1), random(100) * (infect*-1+1), 255 * (infect*-1+1), recover);
     point(this.x,this.y);
   }
 
@@ -94,6 +97,16 @@ class WalkerTop {
       }
     this.x = constrain(this.x,1,width);
     this.y = constrain(this.y,-10,height+10);
+
+    // if (infect == 1) {
+    //   recover = 255;
+    // }
+    if (this.y > height/2-10) {
+      recover = 50;
+    }
+    else {
+      recover = 13;
+    }
   }
 }
 
@@ -107,7 +120,7 @@ class WalkerBottom {
     randomStroke = random (0, 7);
     
     strokeWeight(randomStroke);
-    stroke(random(200) * infect, random(100) * infect, 255 * infect, 13);
+    stroke(random(200) * (infect*-1+1), random(100) * (infect*-1+1), 255 * (infect*-1+1), recover);
     point(this.x,this.y);
   }
 
@@ -124,5 +137,15 @@ class WalkerBottom {
       }
     this.x = constrain(this.x,1,width);
     this.y = constrain(this.y,-10,height+10);
+    
+    // if (infect == 1) {
+    //   recover = 255;
+    // }    
+    if (this.y < height/2-10) {
+      recover = 50;
+    }
+    else {
+      recover = 13;
+    }
   }
 }

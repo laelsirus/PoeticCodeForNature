@@ -163,10 +163,10 @@ class CellMovementBottom {
     this.x = constrain(this.x,1,width);
     
     if (infect == 1) {
-      this.y = constrain(this.y,height/2, height); 
+      this.y = constrain(this.y,height/2, height + 10); 
     }
     else {
-      this.y = constrain(this.y,-10,height+10);
+      this.y = constrain(this.y,-10,height + 10);
     }
     
     if (infect == 1) {

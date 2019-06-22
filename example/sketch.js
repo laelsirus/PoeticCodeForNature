@@ -73,4 +73,3 @@ class Walker {
     this.y = constrain(this.y,0,height-1);
   }
 }
-}

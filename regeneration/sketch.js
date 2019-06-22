@@ -131,7 +131,7 @@ class CellMovementTop {
       healthy = 0;
       stepProb = 12;
     }    
-    else if (this.y > height/2+30) {
+    else if (this.y > height/2-50) {
       recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
@@ -185,7 +185,7 @@ class CellMovementBottom {
       healthy = 0;
       stepProb = 12;
     }    
-    else if (this.y < height/2+30) {
+    else if (this.y < height/2+50) {
       recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;

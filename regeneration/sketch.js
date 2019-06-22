@@ -94,7 +94,7 @@ function draw() {
 class CellMovementTop {
   constructor(){
     this.x = random(width);//(width/2-50, width/2+50)
-    this.y = 0;
+    this.y = -30;
   }
 
   render() {
@@ -148,7 +148,7 @@ class CellMovementTop {
 class CellMovementBottom {
   constructor(){
     this.x = random(width); //(width/2-50, width/2+50)
-    this.y = height;
+    this.y = height + 30;
   }
 
   render() {

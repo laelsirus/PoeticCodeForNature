@@ -47,12 +47,12 @@ function setup() {
 
 
 function draw() {
-  background(0, 5);
+  background(0, 50);
   
   if (mouseIsPressed){
-    randomColor = random (0, 200);
-    randomStroke = random (0, 50);
-    stepProb = 9;
+    randomColor = random (0, 170);
+    randomStroke = random (0, 20);
+    stepProb = 7;
     
     for (var i = 0; i < walker.length; i++) {
      walker[i].step();
@@ -72,13 +72,13 @@ function draw() {
 
 class Walker {
   constructor(){
-    this.x = random (0, width*5);
-    this.y = 0;
+    this.x = random (0, 640);
+    this.y = random (0, 10);
   }
 
   render() {
     strokeWeight(randomStroke);
-    stroke(255, randomColor, randomColor, 3);
+    stroke(255, randomColor, randomColor, 10);
     point(this.x,this.y);
   }
 
@@ -94,9 +94,9 @@ class Walker {
         this.y--;
       }
       else if (choice > 4) {
-        this.y++;
+        this.y = this.y + 10;
       }
-    // this.x = constrain(this.x,0,width-1);
-    // this.y = constrain(this.y,0,height-1);
+    this.x = constrain(this.x,0,width-1);
+    this.y = constrain(this.y,0,height-1);
   }
 }

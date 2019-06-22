@@ -1,22 +1,3 @@
-// function setup() {
-//   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목!");
-//   title.position(20, 0);
-
-//   canvas = createCanvas(300, 300);
-//   canvas.position(20, 60);
-//   canvas.class("artwork");
-
-//   description = "\
-//   작품에 대한 설명이 들어갑니다. <br/> \
-//   HTML이 직접 들어가서 줄넘김을 할 수 있습니다. \
-//   ";
-//   text = createDiv(description);
-//   text.position(20, 400);
-//   text.style("font-family", "monospace");
-//   text.style("font-size", "12pt");
-
-// }
-
 var walkerTop = [];
 var walkerBottom = [];
 let stepProb;
@@ -27,28 +8,32 @@ let speed;
 let infect;
 
 function setup() {
-  title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 반디");
+  title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> Recover");
   title.position(20, 0);
-  description = "\
-  작품설명 <br/> \
-  작품설명 \
-  ";
-  text = createDiv(description);
-  text.position(20, 400);
-  text.style("font-family", "monospace");
-  text.style("font-size", "12pt");
 
-  createCanvas(1920,1080);
+  canvas = createCanvas(960, 540);
+  canvas.position(20, 60);
+  canvas.class("artwork");
+
   background(0);
   speed = 1;
   
   for (var i = 0; i < 100; i++) {
      walkerTop[i] = new WalkerTop();
-   }
-    for (var j = 0; j < 100; j++) {
-     walkerBottom[j] = new WalkerBottom();
-}
+  }
+  for (var j = 0; j < 100; j++) {
+     walkerBottom[j] = new WalkerBottom(); 
+  } 
 
+  description = "\
+  작품에 대한 설명이 들어갑니다. <br/> \
+  HTML이 직접 들어가서 줄넘김을 할 수 있습니다. \
+  ";
+  text = createDiv(description);
+  text.position(20, 400);
+  text.style("font-family", "monospace");
+  text.style("font-size", "12pt");
+}
 
 function draw() {
   background(0, 1);
@@ -84,7 +69,7 @@ function draw() {
 
 class WalkerTop {
   constructor(){
-    this.x = random (width/2-50, width/2+50)
+    this.x = random(width);//(width/2-50, width/2+50)
     this.y = 0;
   }
 
@@ -114,7 +99,7 @@ class WalkerTop {
 
 class WalkerBottom {
   constructor(){
-    this.x = random (width/2-50, width/2+50)
+    this.x = random(width); //(width/2-50, width/2+50)
     this.y = height;
   }
 

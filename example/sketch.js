@@ -7,6 +7,8 @@ let choice;
 let speed;
 let infect;
 let recover;
+let cellSize;
+let healthy;
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> Recover");
@@ -17,7 +19,7 @@ function setup() {
   canvas.class("artwork");
 
   background(0);
-  speed = 1;
+  speed = 3;
   recover = 13;
   infect = 0;
   
@@ -41,6 +43,13 @@ function setup() {
 function draw() {
   background(0, 1);
   stepProb = 13;
+
+  if (healthy == 1) {
+    speed = 5;
+  }
+  else {
+    speed = 3;
+  }
   
   if (mouseIsPressed) {
     upDown = -abs(speed);   
@@ -77,7 +86,7 @@ class WalkerTop {
   }
 
   render() {
-    randomStroke = random (0, 7);
+    randomStroke = random (0, cellSize);
     
     strokeWeight(randomStroke);
     stroke(random(200) * (infect*-1+1), random(100) * (infect*-1+1), 255 * (infect*-1+1), recover);
@@ -98,14 +107,19 @@ class WalkerTop {
     this.x = constrain(this.x,1,width);
     this.y = constrain(this.y,-10,height+10);
 
-    // if (infect == 1) {
-    //   recover = 255;
-    // }
-    if (this.y > height/2-10) {
+    if (infect == 1) {
+      recover = 20;
+      cellSize = 30;
+    }    
+    else if (this.y> height/2-30) {
       recover = 50;
+      cellSize = 7;
+      healthy = 1;
     }
     else {
       recover = 13;
+      cellSize = 7;
+      healthy = 0;
     }
   }
 }
@@ -117,7 +131,7 @@ class WalkerBottom {
   }
 
   render() {
-    randomStroke = random (0, 7);
+    randomStroke = random (0, cellSize);
     
     strokeWeight(randomStroke);
     stroke(random(200) * (infect*-1+1), random(100) * (infect*-1+1), 255 * (infect*-1+1), recover);
@@ -138,14 +152,19 @@ class WalkerBottom {
     this.x = constrain(this.x,1,width);
     this.y = constrain(this.y,-10,height+10);
     
-    // if (infect == 1) {
-    //   recover = 255;
-    // }    
-    if (this.y < height/2-10) {
+    if (infect == 1) {
+      recover = 20;
+      cellSize = 30;
+    }    
+    else if (this.y < height/2+30) {
       recover = 50;
+      cellSize = 7;
+      healthy = 1;
     }
     else {
       recover = 13;
+      cellSize = 7;
+      healthy = 0;
     }
   }
 }

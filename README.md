@@ -1,6 +1,7 @@
 <style>
 body {
     background-color: black;
+    background-image: url('regeneration.png');
     color:white;
 }
 </style>

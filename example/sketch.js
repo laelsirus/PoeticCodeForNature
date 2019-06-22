@@ -25,8 +25,10 @@ function setup() {
   title.position(20, 0);
 
   createCanvas(640,360);
-  walker = new Walker(a);
+  walker = new Walker();
+  walker2 = new Walker();
   background(127);
+  mouseStartX = width/2;
 
   description = "\
   작품에 대한 설명이 들어갑니다. <br/> \
@@ -40,8 +42,12 @@ function setup() {
 
 function draw() {
   if (mouseIsPressed){
-    walker.step(1);
-    walker.render(1);
+    randomColor = random (0, 200);
+    walker.step(6);
+    walker.render(randomColor);
+    
+    walker2.step(6);
+    walker2.render(randomColor);
   }
 }
 
@@ -49,17 +55,17 @@ function draw() {
 
 class Walker {
   constructor(){
-    this.x = random(0, width);
-    this.y = height/2;
+    this.x = random (0, width);
+    this.y = height;
   }
 
   render() {
-    stroke(50);
+    stroke(randomColor);
     point(this.x,this.y);
   }
 
-  step() {
-    var choice = floor(random(6));
+  step(stepProb) {
+    var choice = floor(random(stepProb));
     if (choice == 0 && 1) {
       this.x++;
     } else if (choice == 2 && 3) {

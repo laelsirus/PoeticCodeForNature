@@ -17,19 +17,22 @@
 
 // }
 
-let walker;
+var walker = [];
 let stepProb;
 let randomColor;
 let randomStroke;
-let choice;
+let choice
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목12");
   title.position(20, 0);
 
+  for (var i = 0; i < 20; i++) {
+     walker[i] = new Walker(random(width), random(height));
+   }
   createCanvas(640,360);
-  walker = new Walker();
-  walker2 = new Walker();
+  // walker = new Walker();
+  // walker2 = new Walker();
   background(0);
 
   description = "\
@@ -44,18 +47,24 @@ function setup() {
 
 
 function draw() {
-  background(0, 10);
+  background(0, 5);
+  
   if (mouseIsPressed){
     randomColor = random (0, 200);
     randomStroke = random (0, 50);
     stepProb = 9;
     
+    for (var i = 0; i < walker.length; i++) {
+     walker[i].step();
+     walker[i].render();
+   }
+//     walker.step(6);
+//     walker.render(randomColor);
     
-    walker.step(6);
-    walker.render(randomColor);
+//     walker2.step(6);
+//     walker2.render(randomColor);
     
-    walker2.step(6);
-    walker2.render(randomColor);
+    
   }
 }
 
@@ -63,13 +72,13 @@ function draw() {
 
 class Walker {
   constructor(){
-    this.x = random (0, width);
+    this.x = random (0, width*5);
     this.y = 0;
   }
 
   render() {
     strokeWeight(randomStroke);
-    stroke(255, randomColor, randomColor, 10);
+    stroke(255, randomColor, randomColor, 3);
     point(this.x,this.y);
   }
 

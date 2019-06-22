@@ -17,8 +17,48 @@ function setup() {
 
 }
 
+let walker;
+let a;
+
+function setup() {
+  createCanvas(640,360);
+  walker = new Walker(a);
+  background(127);
+}
+
 function draw() {
-  background(0);
-  fill(255);
-  ellipse(width/2, height/2, 50);
+  if (mouseIsPressed){
+    walker.step(1);
+    walker.render(1);
+  }
+}
+
+
+
+class Walker {
+  constructor(){
+    this.x = random(0, width);
+    this.y = height/2;
+  }
+
+  render() {
+    stroke(50);
+    point(this.x,this.y);
+  }
+
+  step() {
+    var choice = floor(random(6));
+    if (choice == 0 && 1) {
+      this.x++;
+    } else if (choice == 2 && 3) {
+      this.x--;
+    } else if (choice == 4) {
+      this.y++;
+    } else {
+      this.y--;
+    }
+    this.x = constrain(this.x,0,width-1);
+    this.y = constrain(this.y,0,height-1);
+  }
+}
 }

@@ -21,6 +21,7 @@ let walker;
 let stepProb;
 let randomColor;
 let randomStroke;
+let choice;
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목12");

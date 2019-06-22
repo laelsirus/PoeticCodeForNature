@@ -6,7 +6,7 @@ body {
 
 
 
-    background-color: bla/*ck;
+/*    background-color: black;
     background-image: url('regeneration.png');
     color:white;*/
 }

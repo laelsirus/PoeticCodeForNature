@@ -56,7 +56,7 @@ function draw() {
   }
   
   if (mouseIsPressed) {
-    upDown = -abs(speed);   
+    speedABS = -abs(speed);   
     infect = 1;
     for (var i = 0; i < cellMovementTop.length; i++) {
       cellMovementTop[i].step();
@@ -68,7 +68,7 @@ function draw() {
    }
   }
   else {
-    upDown = +abs(speed); 
+    speedABS = +abs(speed); 
     infect = 0;
     for (var i= 0; i < cellMovementTop.length; i++) {
      cellMovementTop[i].step();
@@ -104,7 +104,7 @@ class CellMovementTop {
       this.x--;
     }
     else if (choice > 10) {
-      this.y = this.y + upDown;
+      this.y = this.y + speedABS;
     }
     this.x = constrain(this.x,1,width);
 
@@ -158,7 +158,7 @@ class CellMovementBottom {
       this.x--;
     }
     else if (choice > 10) {
-      this.y = this.y - upDown;
+      this.y = this.y - speedABS;
     }
     this.x = constrain(this.x,1,width);
     

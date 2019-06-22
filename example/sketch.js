@@ -32,7 +32,7 @@ function setup() {
 
   description = "\
   두 신경 세포의 재생, 결합을 시각화 <br/> \
-  클릭하면 세포의 감염 발생 \
+  Canvas 클릭하면 세포의 감염 발생 \
   ";
   text = createDiv(description);
   text.position(20, 640);

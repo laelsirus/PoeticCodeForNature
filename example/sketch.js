@@ -21,7 +21,7 @@ let walker;
 let a;
 
 function setup() {
-  title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목");
+  title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME : </a> 작품 제목!);
   title.position(20, 0);
 
   createCanvas(640,360);

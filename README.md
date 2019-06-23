@@ -9,7 +9,7 @@ body {
  ![예시 이미지](./regeneration.png)
 
  * [yoyo](./yoyo/)
-  
+ ![예시 이미지](./yoyo.png)
 
 
 

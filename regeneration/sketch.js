@@ -93,7 +93,7 @@ function draw() {
 
 class CellMovementTop {
   constructor(){
-    this.x = random(width);//(width/2-50, width/2+50)
+    this.x = random(width);
     this.y = -30;
   }
 
@@ -116,7 +116,7 @@ class CellMovementTop {
     else if (choice > 10) {
       this.y = this.y + speedABS;
     }
-    this.x = constrain(this.x,0,width);
+    this.x = constrain(this.x,-10,width+10);
 
     if (infect == 1) {
       this.y = constrain(this.y,-30,height/2); 
@@ -147,7 +147,7 @@ class CellMovementTop {
 
 class CellMovementBottom {
   constructor(){
-    this.x = random(width); //(width/2-50, width/2+50)
+    this.x = random(width);
     this.y = height + 30;
   }
 
@@ -170,7 +170,7 @@ class CellMovementBottom {
     else if (choice > 10) {
       this.y = this.y - speedABS;
     }
-    this.x = constrain(this.x,0,width);
+    this.x = constrain(this.x,-10,width+10);
     
     if (infect == 1) {
       this.y = constrain(this.y,height/2, height + 30); 

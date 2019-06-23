@@ -13,7 +13,7 @@ function setup() {
   ";
 
   description2 = "\
-  yoyo\
+  Drag mouse\
   ";
 
   text = createDiv(description1);

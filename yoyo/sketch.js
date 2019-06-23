@@ -1,4 +1,4 @@
-var walker = [];
+var yoyo = [];
 
 function setup() {
   title = createElement('h2', "<a href='/PoeticCodeForNature'> HOME</a> yoyo");
@@ -26,45 +26,36 @@ function setup() {
   text.style("font-family", "monospace");
   text.style("font-size", "10pt");
 
-  for (var i = 0; i < 1; i++) {
-    walker[i] = new Walker(random(width), random(height));
+  for (var i = 0; i < 50; i++) {
+    yoyo[i] = new Yoyo(random(width), random(height));
   }
-
-  background(0);
-  speed = 3;
-  recover = 13;
-  infect = 0;
-  stepProb = 13;
 }
 
 function draw() {
-  background(50);
-  //w.update();
-  //w.display();
-  for (var i = 0; i < walker.length; i++) {
-     walker[i].update();
-     walker[i].display();
+  for (var i = 0; i < yoyo.length; i++) {
+     yoyo[i].update();
+     yoyo[i].display();
    }
   
 }
 
-function Walker(x, y) {
+function Yoyo(x, y) {
   this.pos = createVector(x, y);
   this.vel = createVector(0, 0);
   
   this.update = function() {
     var mouse = createVector(mouseX, mouseY);
     this.acc = mouse.sub(this.pos);    
-    this.acc.mult(0.1);
+    this.acc.mult(random(0.0001, 0.2));
     this.vel.add(this.acc);
-    this.vel.mult(0.95);
+    this.vel.mult(random(0.8,0.99));
     this.pos.add(this.vel);
     var cirVel = (abs(this.vel.x) + abs(this.vel.y)) * 0.5;
-    background(cirVel * 2);
+    background(floor(255 - cirVel), 10);
   }
   
   this.display = function() {
-    fill(10);
+    fill((random(1,10)));
     ellipse(this.pos.x, this.pos.y, 48, 48);
   }
 }

@@ -71,11 +71,11 @@ function draw() {
     for (var i = 0; i < cellMovementTop.length; i++) {
       cellMovementTop[i].step();
       cellMovementTop[i].render();
-   }
+    }
     for (var j = 0; j < cellMovementBottom.length; j++) {
       cellMovementBottom[j].step();
       cellMovementBottom[j].render();
-   }
+    }
   }
   else {
     speedABS = +abs(speed); 
@@ -83,11 +83,11 @@ function draw() {
     for (var i= 0; i < cellMovementTop.length; i++) {
      cellMovementTop[i].step();
      cellMovementTop[i].render();
-   }  
+    }  
     for (var j = 0; j < cellMovementBottom.length; j++) {
      cellMovementBottom[j].step();
      cellMovementBottom[j].render();
-   }  
+    }  
   }
 }
 
@@ -101,7 +101,7 @@ class CellMovementTop {
     randomStroke = random (0, cellSize);
     
     strokeWeight(randomStroke);
-    stroke(random(200) * (infect*-1+1), random(100) * (infect*-1+1), 255 * (infect*-1+1), recover);
+    stroke(random(200) * (infect * -1 + 1), random(100) * (infect * -1 + 1), 255 * (infect * -1 + 1), recover);
     point(this.x,this.y);
   }
 
@@ -116,13 +116,13 @@ class CellMovementTop {
     else if (choice > 10) {
       this.y = this.y + speedABS;
     }
-    this.x = constrain(this.x,-10,width+10);
+    this.x = constrain(this.x ,-10, width + 10);
 
     if (infect == 1) {
-      this.y = constrain(this.y,-30,height/2); 
+      this.y = constrain(this.y, -30, height / 2); 
     }
     else {
-      this.y = constrain(this.y,-30,height+30);
+      this.y = constrain(this.y ,-30 ,height + 30);
     }
 
     if (infect == 1) {
@@ -131,7 +131,7 @@ class CellMovementTop {
       healthy = 0;
       stepProb = 12;
     }    
-    else if (this.y > height/2-50) {
+    else if (this.y > height / 2 - 50) {
       recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
@@ -155,7 +155,7 @@ class CellMovementBottom {
     randomStroke = random (0, cellSize);
     
     strokeWeight(randomStroke);
-    stroke(random(200) * (infect*-1+1), random(100) * (infect*-1+1), 255 * (infect*-1+1), recover);
+    stroke(random(200) * (infect * -1 + 1), random(100) * (infect * -1 + 1), 255 * (infect * -1 + 1), recover);
     point(this.x,this.y);
   }
 
@@ -170,13 +170,13 @@ class CellMovementBottom {
     else if (choice > 10) {
       this.y = this.y - speedABS;
     }
-    this.x = constrain(this.x,-10,width+10);
+    this.x = constrain(this.x, -10, width + 10);
     
     if (infect == 1) {
-      this.y = constrain(this.y,height/2, height + 30); 
+      this.y = constrain(this.y, height / 2, height + 30); 
     }
     else {
-      this.y = constrain(this.y,-30,height + 30);
+      this.y = constrain(this.y, -30, height + 30);
     }
     
     if (infect == 1) {
@@ -185,7 +185,7 @@ class CellMovementBottom {
       healthy = 0;
       stepProb = 12;
     }    
-    else if (this.y < height/2+50) {
+    else if (this.y < height / 2 + 50) {
       recover = recover + 0.3;
       cellSize = 7;
       healthy = 1;
